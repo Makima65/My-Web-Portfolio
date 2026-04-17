@@ -63,7 +63,7 @@ export default function ProjectsSection() {
           >
             <div className="w-full h-40 bg-muted relative overflow-hidden border-b border-border/50 shrink-0">
               <img 
-                src="/taskflow-preview.png" 
+                src="/logintask.png" 
                 alt="Taskflow AI Preview" 
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -187,9 +187,9 @@ export default function ProjectsSection() {
             <div className="p-6 sm:p-8 space-y-10">
               {/* Taskflow Main Image/Video */}
               <div className="w-full max-w-3xl mx-auto aspect-[4/3] bg-muted rounded-xl border border-border/50 overflow-hidden relative shadow-lg">
-                <img src="/taskflow-preview.png" alt="Taskflow AI Demo" className="w-full h-full object-cover" />
+                <video src="/taskflowvid.mp4" controls autoPlay muted playsInline className="w-full h-full object-cover" />
               </div>
-
+        
               <div className="flex flex-col lg:flex-row gap-8">
   <div className="flex-1 space-y-4">
     <h3 className="text-xl font-bold">About The Project</h3>
