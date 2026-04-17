@@ -191,15 +191,24 @@ export default function ProjectsSection() {
               </div>
 
               <div className="flex flex-col lg:flex-row gap-8">
-                <div className="flex-1 space-y-4">
-                  <h3 className="text-xl font-bold">About The Project</h3>
-                  <ul className="space-y-3 text-sm text-muted-foreground leading-relaxed list-disc list-inside">
-                    <li>Engineered an intelligent task management platform utilizing Next.js, React, and TypeScript for a scalable, type-safe frontend.</li>
-                    <li>Integrated Supabase for secure authentication, real-time database updates, and scalable backend services.</li>
-                    <li>Implemented the Gemini API to provide AI-powered task breakdown, prioritization, and automated tagging.</li>
-                    <li>Designed a modern, responsive user interface aimed at boosting productivity and workflow efficiency.</li>
-                  </ul>
-                </div>
+  <div className="flex-1 space-y-4">
+    <h3 className="text-xl font-bold">About The Project</h3>
+    <ul className="space-y-3 text-sm text-muted-foreground leading-relaxed list-disc list-inside">
+      <li>
+        <strong>Core Development:</strong> Engineered a full-stack, AI-powered task management platform using Next.js, React, and TypeScript for a highly scalable and type-safe frontend.
+      </li>
+      <li>
+        <strong>Smart AI Assistant:</strong> Leveraged the Gemini API to act as a built-in productivity engine, enabling one-click task breakdown, automated prioritization, and intelligent contextual tagging.
+      </li>
+      <li>
+        <strong>Real-Time Collaboration:</strong> Built a robust workspace sharing system powered by Supabase, featuring live database syncing, secure user authentication, and granular role-based access controls (Owner, Editor, Viewer).
+      </li>
+      <li>
+        <strong>Modern UI/UX:</strong> Designed a highly responsive, intuitive user interface equipped with seamless Light/Dark mode transitions, real-time in-app notifications, and streamlined board management.
+      </li>
+    </ul>
+  </div>
+
 
                 <div className="lg:w-1/3 space-y-6 bg-muted/30 p-6 rounded-xl border border-border/30">
                   <div>
@@ -209,7 +218,7 @@ export default function ProjectsSection() {
                       <a href="#" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
                         <SiGithub className="w-4 h-4" /> View Source Code
                       </a>
-                      <a href="#" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+                      <a href="https://taskflow-ai-cyan.vercel.app/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
                         <ExternalLink className="w-4 h-4" /> Live Demo URL
                       </a>
                     </div>
