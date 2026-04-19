@@ -163,6 +163,9 @@ export default function ProjectsSection() {
                   <div className="aspect-[1896/873] bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/forecast 120.png")}>
                     <img src="/forecast 120.png" alt="Inventory view" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
+                  <div className="aspect-[1896/873] bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/ADmin Login Screenshot.png")}>
+                    <img src="/ADmin Login Screenshot.png" alt="Login Page" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -248,11 +251,14 @@ export default function ProjectsSection() {
                 <h3 className="text-xl font-bold">Gallery</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {/* Update these image paths to your Taskflow screenshots */}
-                  <div className="aspect-[1896/873] bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/taskflow-preview.png")}>
-                    <img src="/taskflow-preview.png" alt="Taskflow UI 1" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="aspect-[1896/873] bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/kanban.png")}>
+                    <img src="/kanban.png" alt="Taskflow UI 1" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
-                  <div className="aspect-[1896/873] bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/taskflow-preview.png")}>
-                    <img src="/taskflow-preview.png" alt="Taskflow UI 2" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="aspect-[1896/873] bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/workplaceSS.png")}>
+                    <img src="/workplaceSS.png" alt="Taskflow UI 2" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  </div>
+                  <div className="aspect-[1896/873] bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/logintask.png")}>
+                    <img src="/logintask.png" alt="Taskflow UI 2" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
                 </div>
               </div>
