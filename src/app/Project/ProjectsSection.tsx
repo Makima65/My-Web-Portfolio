@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { SiPhp, SiMysql, SiGithub, SiReact, SiNextdotjs, SiTypescript, SiSupabase } from "react-icons/si";
-import { X, ExternalLink, ArrowRightLeft, Bot, TrendingUp, Sparkles, Search, Code, ChevronLeft, ChevronRight } from "lucide-react";
-
+import { SiPhp, SiMysql, SiGithub, SiReact, SiNextdotjs, SiTypescript, SiSupabase, SiVercel, SiPython, SiFastapi } from "react-icons/si";
+import { X, ExternalLink, ArrowRightLeft, Bot, TrendingUp, Sparkles, Search, Code, ChevronLeft, ChevronRight, ArrowRight, Database } from "lucide-react";
 export default function ProjectsSection() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   // Modal States
   const [isProjectModalOpen, setIsProjectModalOpen] = useState(false); // Freshflow
@@ -15,24 +15,24 @@ export default function ProjectsSection() {
 
   return (
     <>
-      {/* We use a wrapper with a dark theme base class if your app doesn't enforce one globally. 
-        Adjust 'bg-[#15171E]' to match your exact background if needed.
-      */}
-      <section className="space-y-8 py-10 text-slate-200" id="projects">
+      <section className="space-y-8" id="projects">
         
-        {/* Header section matching screenshot */}
-        <div className="space-y-6">
-          <h2 className="text-xl font-serif tracking-[0.3em] font-bold uppercase text-slate-100">
-            Projects
-          </h2>
+        {/* Header & Search */}
+        <div className="space-y-5">
+          <div className="flex justify-between items-end">
+            <h2 className="text-2xl font-serif font-bold tracking-widest uppercase">
+              Projects
+            </h2>
+          </div>
           
-          {/* Search Bar */}
           <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
-            <input 
-              type="text" 
-              placeholder="Search projects by name or tech..." 
-              className="w-full bg-[#1C2029] border border-slate-800 rounded-md pl-12 pr-4 py-3.5 text-sm text-slate-200 placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-700 transition-shadow"
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+            <input
+              type="text"
+              placeholder="Search projects by name or tech..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-card border border-border/50 rounded-md py-3.5 pl-12 pr-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all shadow-sm"
             />
           </div>
         </div>
@@ -42,182 +42,195 @@ export default function ProjectsSection() {
           
           {/* Card 1: Freshflow */}
           <div 
-            className="group rounded-xl border border-slate-800 bg-[#1C2029] overflow-hidden flex flex-col h-full"
+            onClick={() => setIsProjectModalOpen(true)}
+            className="group cursor-pointer rounded-xl border border-border/50 bg-card text-card-foreground shadow-sm overflow-hidden hover:border-primary/50 hover:shadow-lg transition-all duration-300 flex flex-col h-full"
           >
-            <div className="w-full h-52 relative overflow-hidden bg-slate-900 border-b border-slate-800 shrink-0">
+            {/* Image & Overlay Area */}
+            <div className="w-full aspect-[16/10] bg-muted relative overflow-hidden border-b border-border/50 shrink-0">
               <Image 
                 src="/ADmin Login Screenshot.png" 
                 alt="Freshflow Preview"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover opacity-80"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1C2029] via-transparent to-transparent opacity-90" />
+              {/* Dark Gradient Overlay for text readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
               
-              {/* Title Overlay */}
-              <div className="absolute bottom-4 left-5 flex items-center gap-3">
-                <div className="bg-[#15171E] p-2 rounded border border-slate-800 flex items-center justify-center">
-                  <Code className="w-5 h-5 text-slate-300" />
+              {/* Title & Icon Overlay */}
+              <div className="absolute bottom-4 left-4 flex items-center gap-3 z-20">
+                <div className="bg-background/90 backdrop-blur-sm p-2 rounded-md shadow-sm text-foreground">
+                  <Code className="w-4 h-4" />
                 </div>
-                <h3 className="text-xl font-serif font-bold text-slate-100 tracking-wide">Freshflow</h3>
+                <h3 className="text-xl font-serif font-bold text-white tracking-wide">
+                  Freshflow
+                </h3>
               </div>
             </div>
 
-            <div className="p-6 flex flex-col flex-1">
-              <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-5">
-                PHP · MYSQL · AJAX · MACHINE LEARNING
+            <div className="p-5 sm:p-6 flex flex-col flex-1">
+              <p className="text-[11px] font-bold text-muted-foreground tracking-wider uppercase mb-5">
+                PHP • MYSQL • AJAX • MACHINE LEARNING
               </p>
               
               <ul className="space-y-3 mb-8 flex-1">
-                <li className="flex items-start gap-3 text-sm text-slate-300">
-                  <span className="w-1.5 h-1.5 rounded-full bg-slate-500 shrink-0 mt-1.5"></span>
+                <li className="flex items-start gap-2.5 text-sm text-foreground/80">
+                  <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/60 shrink-0 mt-1.5" />
+                  Secure full-stack platform with OWASP defenses
+                </li>
+                <li className="flex items-start gap-2.5 text-sm text-foreground/80">
+                  <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/60 shrink-0 mt-1.5" />
                   ML forecasting engine applying Linear Regression
                 </li>
-                <li className="flex items-start gap-3 text-sm text-slate-300">
-                  <span className="w-1.5 h-1.5 rounded-full bg-slate-500 shrink-0 mt-1.5"></span>
-                  Smart Pricing algorithm for expiration dates
-                </li>
-                <li className="flex items-start gap-3 text-sm text-slate-300">
-                  <span className="w-1.5 h-1.5 rounded-full bg-slate-500 shrink-0 mt-1.5"></span>
+                <li className="flex items-start gap-2.5 text-sm text-foreground/80">
+                  <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/60 shrink-0 mt-1.5" />
                   AI data assistant using Llama 3 LLM
                 </li>
               </ul>
               
-              <button 
-                onClick={() => setIsProjectModalOpen(true)}
-                className="text-sm text-slate-400 hover:text-slate-200 transition-colors mt-auto text-left flex items-center gap-1.5"
-              >
-                View details &rarr;
-              </button>
+              <div className="mt-auto pt-2">
+                <span className="text-sm font-medium text-primary hover:text-primary/80 transition-colors flex items-center gap-1.5">
+                  View details <ArrowRight className="w-3.5 h-3.5" />
+                </span>
+              </div>
             </div>
           </div>
 
           {/* Card 2: Taskflow AI */}
           <div 
-            className="group rounded-xl border border-slate-800 bg-[#1C2029] overflow-hidden flex flex-col h-full"
+            onClick={() => setIsTaskflowModalOpen(true)} 
+            className="group cursor-pointer rounded-xl border border-border/50 bg-card text-card-foreground shadow-sm overflow-hidden hover:border-primary/50 hover:shadow-lg transition-all duration-300 flex flex-col h-full"
           >
-            <div className="w-full h-52 relative overflow-hidden bg-slate-900 border-b border-slate-800 shrink-0">
+            {/* Image & Overlay Area */}
+            <div className="w-full aspect-[16/10] bg-muted relative overflow-hidden border-b border-border/50 shrink-0">
               <Image 
                 src="/logintask.png" 
                 alt="Taskflow AI Preview" 
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover opacity-80"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1C2029] via-transparent to-transparent opacity-90" />
+              {/* Dark Gradient Overlay for text readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
               
-              {/* Title Overlay */}
-              <div className="absolute bottom-4 left-5 flex items-center gap-3">
-                <div className="bg-[#15171E] p-2 rounded border border-slate-800 flex items-center justify-center">
-                  <Code className="w-5 h-5 text-slate-300" />
+              {/* Title & Icon Overlay */}
+              <div className="absolute bottom-4 left-4 flex items-center gap-3 z-20">
+                <div className="bg-background/90 backdrop-blur-sm p-2 rounded-md shadow-sm text-foreground">
+                  <Code className="w-4 h-4" />
                 </div>
-                <h3 className="text-xl font-serif font-bold text-slate-100 tracking-wide">Taskflow AI</h3>
+                <h3 className="text-xl font-serif font-bold text-white tracking-wide">
+                  Taskflow AI
+                </h3>
               </div>
             </div>
 
-            <div className="p-6 flex flex-col flex-1">
-              <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-5">
-                NEXT.JS · REACT · TYPESCRIPT · SUPABASE
+            <div className="p-5 sm:p-6 flex flex-col flex-1">
+              <p className="text-[11px] font-bold text-muted-foreground tracking-wider uppercase mb-5">
+                NEXT.JS • REACT • TYPESCRIPT • SUPABASE
               </p>
               
               <ul className="space-y-3 mb-8 flex-1">
-                <li className="flex items-start gap-3 text-sm text-slate-300">
-                  <span className="w-1.5 h-1.5 rounded-full bg-slate-500 shrink-0 mt-1.5"></span>
+                <li className="flex items-start gap-2.5 text-sm text-foreground/80">
+                  <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/60 shrink-0 mt-1.5" />
                   Intelligent task management application
                 </li>
-                <li className="flex items-start gap-3 text-sm text-slate-300">
-                  <span className="w-1.5 h-1.5 rounded-full bg-slate-500 shrink-0 mt-1.5"></span>
+                <li className="flex items-start gap-2.5 text-sm text-foreground/80">
+                  <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/60 shrink-0 mt-1.5" />
                   Built-in productivity engine via Gemini API
                 </li>
-                <li className="flex items-start gap-3 text-sm text-slate-300">
-                  <span className="w-1.5 h-1.5 rounded-full bg-slate-500 shrink-0 mt-1.5"></span>
+                <li className="flex items-start gap-2.5 text-sm text-foreground/80">
+                  <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/60 shrink-0 mt-1.5" />
                   Real-time collaboration workspace sharing
                 </li>
               </ul>
               
-              <button 
-                onClick={() => setIsTaskflowModalOpen(true)}
-                className="text-sm text-slate-400 hover:text-slate-200 transition-colors mt-auto text-left flex items-center gap-1.5"
-              >
-                View details &rarr;
-              </button>
+              <div className="mt-auto pt-2">
+                <span className="text-sm font-medium text-primary hover:text-primary/80 transition-colors flex items-center gap-1.5">
+                  View details <ArrowRight className="w-3.5 h-3.5" />
+                </span>
+              </div>
             </div>
           </div>
 
           {/* Card 3: OtakuRecs */}
           <div 
-            className="group rounded-xl border border-slate-800 bg-[#1C2029] overflow-hidden flex flex-col h-full"
+            onClick={() => setIsOtakuRecsModalOpen(true)} 
+            className="group cursor-pointer rounded-xl border border-border/50 bg-card text-card-foreground shadow-sm overflow-hidden hover:border-primary/50 hover:shadow-lg transition-all duration-300 flex flex-col h-full"
           >
-            <div className="w-full h-52 relative overflow-hidden bg-slate-900 border-b border-slate-800 shrink-0">
+            {/* Image & Overlay Area */}
+            <div className="w-full aspect-[16/10] bg-muted relative overflow-hidden border-b border-border/50 shrink-0">
               <Image 
-                src="/otakurecs-preview.png"
+                src="/otakurecs_main.png" // UPDATE THIS PATH
                 alt="OtakuRecs Preview" 
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover opacity-80"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1C2029] via-transparent to-transparent opacity-90" />
+              {/* Dark Gradient Overlay for text readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
               
-              {/* Title Overlay */}
-              <div className="absolute bottom-4 left-5 flex items-center gap-3">
-                <div className="bg-[#15171E] p-2 rounded border border-slate-800 flex items-center justify-center">
-                  <Code className="w-5 h-5 text-slate-300" />
+              {/* Title & Icon Overlay */}
+              <div className="absolute bottom-4 left-4 flex items-center gap-3 z-20">
+                <div className="bg-background/90 backdrop-blur-sm p-2 rounded-md shadow-sm text-foreground">
+                  <Code className="w-4 h-4" />
                 </div>
-                <h3 className="text-xl font-serif font-bold text-slate-100 tracking-wide">OtakuRecs</h3>
+                <h3 className="text-xl font-serif font-bold text-white tracking-wide">
+                  OtakuRecs
+                </h3>
               </div>
             </div>
 
-            <div className="p-6 flex flex-col flex-1">
-              <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-5">
-                REACT · NEXT.JS · API INTEGRATION
-              </p>
+            <div className="p-5 sm:p-6 flex flex-col flex-1">
+<p className="text-[11px] font-bold text-muted-foreground tracking-wider uppercase mb-5">
+  NEXT.JS • REACT • SUPABASE • AI • TYPESCRIPT
+</p>
               
-              <ul className="space-y-3 mb-8 flex-1">
-                <li className="flex items-start gap-3 text-sm text-slate-300">
-                  <span className="w-1.5 h-1.5 rounded-full bg-slate-500 shrink-0 mt-1.5"></span>
-                  Specialized anime discovery platform
+<ul className="space-y-3 mb-8 flex-1">
+                <li className="flex items-start gap-2.5 text-sm text-foreground/80">
+                  <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/60 shrink-0 mt-1.5" />
+                  Semantic "Vibe Search" powered by AI
                 </li>
-                <li className="flex items-start gap-3 text-sm text-slate-300">
-                  <span className="w-1.5 h-1.5 rounded-full bg-slate-500 shrink-0 mt-1.5"></span>
-                  Personalized recommendation algorithms
+                <li className="flex items-start gap-2.5 text-sm text-foreground/80">
+                  <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/60 shrink-0 mt-1.5" />
+                  Real-time community stats & social profiles
                 </li>
-                <li className="flex items-start gap-3 text-sm text-slate-300">
-                  <span className="w-1.5 h-1.5 rounded-full bg-slate-500 shrink-0 mt-1.5"></span>
-                  Intuitive and responsive mobile-first UI
+                <li className="flex items-start gap-2.5 text-sm text-foreground/80">
+                  <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/60 shrink-0 mt-1.5" />
+                  Extensive database via Jikan (MyAnimeList) API
                 </li>
-              </ul>
-              
-              <button 
-                onClick={() => setIsOtakuRecsModalOpen(true)}
-                className="text-sm text-slate-400 hover:text-slate-200 transition-colors mt-auto text-left flex items-center gap-1.5"
-              >
-                View details &rarr;
-              </button>
+              </ul>              
+              <div className="mt-auto pt-2">
+                <span className="text-sm font-medium text-primary hover:text-primary/80 transition-colors flex items-center gap-1.5">
+                  View details <ArrowRight className="w-3.5 h-3.5" />
+                </span>
+              </div>
             </div>
           </div>
 
         </div>
 
-        {/* Pagination aligned with the screenshot */}
-        <div className="flex items-center justify-center gap-4 pt-8 pb-4">
-          <button className="flex items-center gap-2 px-4 py-2 text-sm bg-transparent border border-slate-800 text-slate-400 rounded-md hover:bg-slate-800 hover:text-slate-200 transition-colors">
+        {/* Pagination Footer */}
+        <div className="flex items-center justify-center gap-4 sm:gap-6 mt-10 pt-4">
+          <button className="flex items-center gap-2 px-4 py-2 border border-border/50 rounded-md text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors disabled:opacity-50">
             <ChevronLeft className="w-4 h-4" /> Prev
           </button>
-          <span className="text-sm text-slate-500 font-medium">Page 1 of 2</span>
-          <button className="flex items-center gap-2 px-4 py-2 text-sm bg-transparent border border-slate-800 text-slate-400 rounded-md hover:bg-slate-800 hover:text-slate-200 transition-colors">
+          <span className="text-sm font-medium text-muted-foreground">
+            Page 1 of 2
+          </span>
+          <button className="flex items-center gap-2 px-4 py-2 border border-border/50 rounded-md text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors">
             Next <ChevronRight className="w-4 h-4" />
           </button>
         </div>
       </section>
 
-      {/* --- Keep ALL Your Original Modal Logic Below This Line --- */}
+      {/* --- MODALS (Made Mobile-Friendly with full-height on phones) --- */}
 
       {/* Freshflow Modal */}
       {isProjectModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-background/80 backdrop-blur-md animate-in fade-in duration-200">
-          <div className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto bg-card border border-border/50 rounded-2xl shadow-2xl flex flex-col animate-in zoom-in-95 duration-300">
-            <div className="sticky top-0 z-10 flex justify-between items-center p-6 border-b border-border/50 bg-card/95 backdrop-blur-sm">
-              <h2 className="text-2xl font-bold text-foreground">Freshflow Deep Dive</h2>
+        <div className="fixed inset-0 z-[100] flex items-center justify-center sm:p-6 bg-background/80 backdrop-blur-md animate-in fade-in duration-200">
+          <div className="relative w-full h-[100dvh] sm:h-auto max-w-5xl sm:max-h-[90vh] overflow-y-auto bg-card sm:border border-border/50 sm:rounded-2xl shadow-2xl flex flex-col animate-in zoom-in-95 duration-300">
+            <div className="sticky top-0 z-10 flex justify-between items-center p-4 sm:p-6 border-b border-border/50 bg-card/95 backdrop-blur-sm">
+              <h2 className="text-xl sm:text-2xl font-bold text-foreground">Freshflow Deep Dive</h2>
               <button 
                 onClick={() => setIsProjectModalOpen(false)}
                 className="p-2 rounded-full hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
@@ -226,8 +239,8 @@ export default function ProjectsSection() {
               </button>
             </div>
 
-            <div className="p-6 sm:p-8 space-y-10">
-              <div className="w-full max-w-3xl mx-auto aspect-[4/3] bg-black rounded-xl border border-border/50 overflow-hidden relative shadow-lg">
+            <div className="p-4 sm:p-8 space-y-8 sm:space-y-10">
+              <div className="w-full max-w-3xl mx-auto aspect-video bg-black rounded-xl border border-border/50 overflow-hidden relative shadow-lg">
                 <video 
                   src="/freshflowad4.mp4" 
                   poster="/ADmin Login Screenshot.png"
@@ -251,15 +264,15 @@ export default function ProjectsSection() {
                   </ul>
                 </div>
 
-                <div className="lg:w-1/3 space-y-6 bg-muted/30 p-6 rounded-xl border border-border/30">
+                <div className="lg:w-1/3 space-y-6 bg-muted/30 p-5 sm:p-6 rounded-xl border border-border/30">
                   <div>
                     <h4 className="font-semibold text-sm uppercase tracking-wider mb-3">Links</h4>
                     <div className="space-y-3">
-                      <a href="https://github.com/Makima65/Freshflow" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
-                        <SiGithub className="w-4 h-4" /> View Source Code
+                      <a href="https://github.com/Makima65/Freshflow" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors py-1">
+                        <SiGithub className="w-4 h-4 shrink-0" /> <span className="break-all">View Source Code</span>
                       </a>
-                      <a href="https://freshflow.site/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
-                        <ExternalLink className="w-4 h-4" /> Live Demo URL
+                      <a href="https://freshflow.site/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors py-1">
+                        <ExternalLink className="w-4 h-4 shrink-0" /> <span className="break-all">Live Demo URL</span>
                       </a>
                     </div>
                   </div>
@@ -287,13 +300,13 @@ export default function ProjectsSection() {
               <div className="space-y-4">
                 <h3 className="text-xl font-bold">Gallery</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="aspect-[1896/873] relative bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/Dashboard 120.png")}>
+                  <div className="aspect-video relative bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/Dashboard 120.png")}>
                     <Image src="/Dashboard 120.png" alt="Dashboard" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
-                  <div className="aspect-[1896/873] relative bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/forecast 120.png")}>
+                  <div className="aspect-video relative bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/forecast 120.png")}>
                     <Image src="/forecast 120.png" alt="Inventory view" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
-                  <div className="aspect-[1896/873] relative bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/ADmin Login Screenshot.png")}>
+                  <div className="aspect-video relative bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/ADmin Login Screenshot.png")}>
                     <Image src="/ADmin Login Screenshot.png" alt="Login Page" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
                 </div>
@@ -305,10 +318,10 @@ export default function ProjectsSection() {
 
       {/* Taskflow AI Modal */}
       {isTaskflowModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-background/80 backdrop-blur-md animate-in fade-in duration-200">
-          <div className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto bg-card border border-border/50 rounded-2xl shadow-2xl flex flex-col animate-in zoom-in-95 duration-300">
-            <div className="sticky top-0 z-10 flex justify-between items-center p-6 border-b border-border/50 bg-card/95 backdrop-blur-sm">
-              <h2 className="text-2xl font-bold text-foreground">Taskflow AI Deep Dive</h2>
+        <div className="fixed inset-0 z-[100] flex items-center justify-center sm:p-6 bg-background/80 backdrop-blur-md animate-in fade-in duration-200">
+          <div className="relative w-full h-[100dvh] sm:h-auto max-w-5xl sm:max-h-[90vh] overflow-y-auto bg-card sm:border border-border/50 sm:rounded-2xl shadow-2xl flex flex-col animate-in zoom-in-95 duration-300">
+            <div className="sticky top-0 z-10 flex justify-between items-center p-4 sm:p-6 border-b border-border/50 bg-card/95 backdrop-blur-sm">
+              <h2 className="text-xl sm:text-2xl font-bold text-foreground">Taskflow AI Deep Dive</h2>
               <button 
                 onClick={() => setIsTaskflowModalOpen(false)}
                 className="p-2 rounded-full hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
@@ -317,8 +330,8 @@ export default function ProjectsSection() {
               </button>
             </div>
 
-            <div className="p-6 sm:p-8 space-y-10">
-              <div className="w-full max-w-3xl mx-auto aspect-[4/3] bg-muted rounded-xl border border-border/50 overflow-hidden relative shadow-lg">
+            <div className="p-4 sm:p-8 space-y-8 sm:space-y-10">
+              <div className="w-full max-w-3xl mx-auto aspect-video bg-muted rounded-xl border border-border/50 overflow-hidden relative shadow-lg">
                 <video 
                   src="/taskflowvid.mp4" 
                   poster="/logintask.png"
@@ -342,15 +355,15 @@ export default function ProjectsSection() {
                   </ul>
                 </div>
 
-                <div className="lg:w-1/3 space-y-6 bg-muted/30 p-6 rounded-xl border border-border/30">
+                <div className="lg:w-1/3 space-y-6 bg-muted/30 p-5 sm:p-6 rounded-xl border border-border/30">
                   <div>
                     <h4 className="font-semibold text-sm uppercase tracking-wider mb-3">Links</h4>
                     <div className="space-y-3">
-                      <a href="#" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
-                        <SiGithub className="w-4 h-4" /> View Source Code
+                      <a href="#" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors py-1">
+                        <SiGithub className="w-4 h-4 shrink-0" /> <span className="break-all">View Source Code</span>
                       </a>
-                      <a href="https://taskflow-ai-cyan.vercel.app/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
-                        <ExternalLink className="w-4 h-4" /> Live Demo URL
+                      <a href="https://taskflow-ai-cyan.vercel.app/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors py-1">
+                        <ExternalLink className="w-4 h-4 shrink-0" /> <span className="break-all">Live Demo URL</span>
                       </a>
                     </div>
                   </div>
@@ -358,7 +371,7 @@ export default function ProjectsSection() {
                   <div>
                     <h4 className="font-semibold text-sm uppercase tracking-wider mb-3">Tech Stack</h4>
                     <div className="flex flex-wrap gap-2">
-                      {[
+{[
                         { name: "Next.js", icon: SiNextdotjs, color: "text-foreground dark:text-white" },
                         { name: "React", icon: SiReact, color: "text-[#61DAFB]" },
                         { name: "TypeScript", icon: SiTypescript, color: "text-[#3178C6]" },
@@ -378,13 +391,13 @@ export default function ProjectsSection() {
               <div className="space-y-4">
                 <h3 className="text-xl font-bold">Gallery</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="aspect-[1896/873] relative bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/kanban.png")}>
+                  <div className="aspect-video relative bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/kanban.png")}>
                     <Image src="/kanban.png" alt="Taskflow UI 1" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
-                  <div className="aspect-[1896/873] relative bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/workplaceSS.png")}>
+                  <div className="aspect-video relative bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/workplaceSS.png")}>
                     <Image src="/workplaceSS.png" alt="Taskflow UI 2" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
-                  <div className="aspect-[1896/873] relative bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/logintask.png")}>
+                  <div className="aspect-video relative bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/logintask.png")}>
                     <Image src="/logintask.png" alt="Taskflow UI 3" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
                 </div>
@@ -397,9 +410,9 @@ export default function ProjectsSection() {
       {/* OtakuRecs Modal */}
       {isOtakuRecsModalOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-background/80 backdrop-blur-md animate-in fade-in duration-200">
-          <div className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto bg-card border border-border/50 rounded-2xl shadow-2xl flex flex-col animate-in zoom-in-95 duration-300">
-            <div className="sticky top-0 z-10 flex justify-between items-center p-6 border-b border-border/50 bg-card/95 backdrop-blur-sm">
-              <h2 className="text-2xl font-bold text-foreground">OtakuRecs Deep Dive</h2>
+          <div className="relative w-full h-[100dvh] sm:h-auto max-w-5xl sm:max-h-[90vh] overflow-y-auto bg-card sm:border border-border/50 sm:rounded-2xl shadow-2xl flex flex-col animate-in zoom-in-95 duration-300">
+            <div className="sticky top-0 z-10 flex justify-between items-center p-4 sm:p-6 border-b border-border/50 bg-card/95 backdrop-blur-sm">
+              <h2 className="text-xl sm:text-2xl font-bold text-foreground">OtakuRecs Deep Dive</h2>
               <button 
                 onClick={() => setIsOtakuRecsModalOpen(false)}
                 className="p-2 rounded-full hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
@@ -408,11 +421,11 @@ export default function ProjectsSection() {
               </button>
             </div>
 
-            <div className="p-6 sm:p-8 space-y-10">
-              <div className="w-full max-w-3xl mx-auto aspect-[4/3] bg-muted rounded-xl border border-border/50 overflow-hidden relative shadow-lg">
+            <div className="p-4 sm:p-8 space-y-8 sm:space-y-10">
+              <div className="w-full max-w-3xl mx-auto aspect-video bg-muted rounded-xl border border-border/50 overflow-hidden relative shadow-lg">
                 <video 
-                  src="/otakuvid.mp4" 
-                  poster="/otakurecs-preview.png" 
+                  src="/otakuvid.mp4" // UPDATE THIS
+                  poster="/otakurecs_main.png" // UPDATE THIS
                   controls 
                   autoPlay 
                   muted 
@@ -425,23 +438,23 @@ export default function ProjectsSection() {
               <div className="flex flex-col lg:flex-row gap-8">
                 <div className="flex-1 space-y-4">
                   <h3 className="text-xl font-bold">About The Project</h3>
-                  <ul className="space-y-3 text-sm text-muted-foreground leading-relaxed list-disc list-inside">
-                    <li><strong>Feature 1:</strong> Update this text with a bullet point about what you built.</li>
-                    <li><strong>Feature 2:</strong> Update this text with a bullet point about an API or tool you used.</li>
-                    <li><strong>Feature 3:</strong> Update this text with details about the UI or backend.</li>
-                    <li><strong>Feature 4:</strong> Highlight a specific problem you solved in this project.</li>
+<ul className="space-y-3 text-sm text-muted-foreground leading-relaxed list-disc list-inside">
+                    <li><strong>AI Vibe Search:</strong> Engineered a semantic search engine using a custom Python/Hugging Face API and Pinecone vector database to recommend anime based on mood and descriptions.</li>
+                    <li><strong>API Integration:</strong> Seamlessly integrated the Jikan API to fetch and display extensive, up-to-date MyAnimeList data, including trailers, characters, and relations.</li>
+                    <li><strong>Social & Tracking:</strong> Built a personalized tracking system with Supabase for users to save anime, favorite characters, and leave comments.</li>
+                    <li><strong>Community Features:</strong> Designed a dynamic routing system for public/private user profiles and real-time community watch statistics.</li>
                   </ul>
                 </div>
 
-                <div className="lg:w-1/3 space-y-6 bg-muted/30 p-6 rounded-xl border border-border/30">
+                <div className="lg:w-1/3 space-y-6 bg-muted/30 p-5 sm:p-6 rounded-xl border border-border/30">
                   <div>
                     <h4 className="font-semibold text-sm uppercase tracking-wider mb-3">Links</h4>
-                    <div className="space-y-3">
-                      <a href="#" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
-                        <SiGithub className="w-4 h-4" /> View Source Code
+<div className="space-y-3">
+                      <a href="https://github.com/Makima65/otakurecs" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors py-1">
+                        <SiGithub className="w-4 h-4 shrink-0" /> <span className="break-all">View Source Code</span>
                       </a>
-                      <a href="#" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
-                        <ExternalLink className="w-4 h-4" /> Live Demo URL
+                      <a href="https://otaku-recs.vercel.app/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors py-1">
+                        <ExternalLink className="w-4 h-4 shrink-0" /> <span className="break-all">Live Demo URL</span>
                       </a>
                     </div>
                   </div>
@@ -449,15 +462,23 @@ export default function ProjectsSection() {
                   <div>
                     <h4 className="font-semibold text-sm uppercase tracking-wider mb-3">Tech Stack</h4>
                     <div className="flex flex-wrap gap-2">
-                      {[
+{[
                         { name: "Next.js", icon: SiNextdotjs, color: "text-foreground dark:text-white" },
                         { name: "React", icon: SiReact, color: "text-[#61DAFB]" },
+                        { name: "TypeScript", icon: SiTypescript, color: "text-[#3178C6]" },
+                        { name: "Python", icon: SiPython, color: "text-[#3776AB]" },
+                        { name: "FastAPI", icon: SiFastapi, color: "text-[#009688]" },
+                        { name: "Pinecone", icon: Database, color: "text-foreground dark:text-white" },
+                        { name: "Supabase", icon: SiSupabase, color: "text-[#3ECF8E]" },
+                        { name: "Vercel", icon: SiVercel, color: "text-foreground dark:text-white" },
+                        { name: "AI Vibe Search", icon: Sparkles, color: "text-[#8E75B2]" },
                       ].map((tech) => (
                         <span key={tech.name} className="inline-flex items-center gap-1.5 rounded-md border border-border/50 bg-background px-2.5 py-1.5 text-xs font-medium text-foreground shadow-sm transition-all hover:border-primary/50">
                           <tech.icon className={`w-3.5 h-3.5 ${tech.color}`} />
                           {tech.name}
                         </span>
                       ))}
+                      
                     </div>
                   </div>
                 </div>
@@ -466,10 +487,10 @@ export default function ProjectsSection() {
               <div className="space-y-4">
                 <h3 className="text-xl font-bold">Gallery</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="aspect-[1896/873] relative bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/otaku1.png")}>
+                  <div className="aspect-video relative bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/otaku1.png")}>
                     <Image src="/otaku1.png" alt="OtakuRecs UI 1" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
-                  <div className="aspect-[1896/873] relative bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/otaku2.png")}>
+                  <div className="aspect-video relative bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/otaku2.png")}>
                     <Image src="/otaku2.png" alt="OtakuRecs UI 2" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
                 </div>
