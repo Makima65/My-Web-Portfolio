@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 // Added icons for React, Next.js, TypeScript, and Supabase
 import { SiPhp, SiMysql, SiGithub, SiReact, SiNextdotjs, SiTypescript, SiSupabase } from "react-icons/si";
 // Added 'Sparkles' icon to represent the Gemini API
@@ -10,7 +11,7 @@ export default function ProjectsSection() {
   const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  // 1. UNCOMMENTED TASKFLOW STATE
+  // Taskflow State
   const [isTaskflowModalOpen, setIsTaskflowModalOpen] = useState(false);
 
   return (
@@ -29,10 +30,12 @@ export default function ProjectsSection() {
             className="group cursor-pointer rounded-xl border border-border/50 bg-card text-card-foreground shadow-sm overflow-hidden hover:border-primary/50 hover:shadow-lg transition-all duration-300 flex flex-col h-full"
           >
             <div className="w-full h-40 bg-muted relative overflow-hidden border-b border-border/50 shrink-0">
-              <img 
+              <Image 
                 src="/ADmin Login Screenshot.png" 
-                alt="Freshflow Preview" 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                alt="Freshflow Preview"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-background/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                 <span className="bg-background text-foreground px-3 py-1.5 rounded-full text-xs font-bold shadow-xl flex items-center gap-1.5">
@@ -57,15 +60,16 @@ export default function ProjectsSection() {
 
           {/* Card 2: Taskflow AI */}
           <div 
-            // 2. UNCOMMENTED ONCLICK HANDLER
             onClick={() => setIsTaskflowModalOpen(true)} 
             className="group cursor-pointer rounded-xl border border-border/50 bg-card text-card-foreground shadow-sm overflow-hidden hover:border-primary/50 hover:shadow-lg transition-all duration-300 flex flex-col h-full"
           >
             <div className="w-full h-40 bg-muted relative overflow-hidden border-b border-border/50 shrink-0">
-              <img 
+              <Image 
                 src="/logintask.png" 
                 alt="Taskflow AI Preview" 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-background/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                 <span className="bg-background text-foreground px-3 py-1.5 rounded-full text-xs font-bold shadow-xl flex items-center gap-1.5">
@@ -107,7 +111,16 @@ export default function ProjectsSection() {
 
             <div className="p-6 sm:p-8 space-y-10">
               <div className="w-full max-w-3xl mx-auto aspect-[4/3] bg-black rounded-xl border border-border/50 overflow-hidden relative shadow-lg">
-                <video src="/freshflowad4.mp4" controls autoPlay muted playsInline className="w-full h-full object-cover" />
+                <video 
+                  src="/freshflowad4.mp4" 
+                  poster="/ADmin Login Screenshot.png"
+                  controls 
+                  autoPlay 
+                  muted 
+                  playsInline 
+                  preload="metadata"
+                  className="w-full h-full object-cover" 
+                />
               </div>
 
               <div className="flex flex-col lg:flex-row gap-8">
@@ -157,14 +170,14 @@ export default function ProjectsSection() {
               <div className="space-y-4">
                 <h3 className="text-xl font-bold">Gallery</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="aspect-[1896/873] bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/Dashboard 120.png")}>
-                    <img src="/Dashboard 120.png" alt="Dashboard" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="aspect-[1896/873] relative bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/Dashboard 120.png")}>
+                    <Image src="/Dashboard 120.png" alt="Dashboard" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
-                  <div className="aspect-[1896/873] bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/forecast 120.png")}>
-                    <img src="/forecast 120.png" alt="Inventory view" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="aspect-[1896/873] relative bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/forecast 120.png")}>
+                    <Image src="/forecast 120.png" alt="Inventory view" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
-                  <div className="aspect-[1896/873] bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/ADmin Login Screenshot.png")}>
-                    <img src="/ADmin Login Screenshot.png" alt="Login Page" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="aspect-[1896/873] relative bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/ADmin Login Screenshot.png")}>
+                    <Image src="/ADmin Login Screenshot.png" alt="Login Page" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
                 </div>
               </div>
@@ -173,7 +186,7 @@ export default function ProjectsSection() {
         </div>
       )}
 
-      {/* 3. NEW TASKFLOW AI MODAL */}
+      {/* Taskflow AI Modal */}
       {isTaskflowModalOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-background/80 backdrop-blur-md animate-in fade-in duration-200">
           <div className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto bg-card border border-border/50 rounded-2xl shadow-2xl flex flex-col animate-in zoom-in-95 duration-300">
@@ -190,34 +203,41 @@ export default function ProjectsSection() {
             <div className="p-6 sm:p-8 space-y-10">
               {/* Taskflow Main Image/Video */}
               <div className="w-full max-w-3xl mx-auto aspect-[4/3] bg-muted rounded-xl border border-border/50 overflow-hidden relative shadow-lg">
-                <video src="/taskflowvid.mp4" controls autoPlay muted playsInline className="w-full h-full object-cover" />
+                <video 
+                  src="/taskflowvid.mp4" 
+                  poster="/logintask.png"
+                  controls 
+                  autoPlay 
+                  muted 
+                  playsInline 
+                  preload="metadata"
+                  className="w-full h-full object-cover" 
+                />
               </div>
         
               <div className="flex flex-col lg:flex-row gap-8">
-  <div className="flex-1 space-y-4">
-    <h3 className="text-xl font-bold">About The Project</h3>
-    <ul className="space-y-3 text-sm text-muted-foreground leading-relaxed list-disc list-inside">
-      <li>
-        <strong>Core Development:</strong> Engineered a full-stack, AI-powered task management platform using Next.js, React, and TypeScript for a highly scalable and type-safe frontend.
-      </li>
-      <li>
-        <strong>Smart AI Assistant:</strong> Leveraged the Gemini API to act as a built-in productivity engine, enabling one-click task breakdown, automated prioritization, and intelligent contextual tagging.
-      </li>
-      <li>
-        <strong>Real-Time Collaboration:</strong> Built a robust workspace sharing system powered by Supabase, featuring live database syncing, secure user authentication, and granular role-based access controls (Owner, Editor, Viewer).
-      </li>
-      <li>
-        <strong>Modern UI/UX:</strong> Designed a highly responsive, intuitive user interface equipped with seamless Light/Dark mode transitions, real-time in-app notifications, and streamlined board management.
-      </li>
-    </ul>
-  </div>
-
+                <div className="flex-1 space-y-4">
+                  <h3 className="text-xl font-bold">About The Project</h3>
+                  <ul className="space-y-3 text-sm text-muted-foreground leading-relaxed list-disc list-inside">
+                    <li>
+                      <strong>Core Development:</strong> Engineered a full-stack, AI-powered task management platform using Next.js, React, and TypeScript for a highly scalable and type-safe frontend.
+                    </li>
+                    <li>
+                      <strong>Smart AI Assistant:</strong> Leveraged the Gemini API to act as a built-in productivity engine, enabling one-click task breakdown, automated prioritization, and intelligent contextual tagging.
+                    </li>
+                    <li>
+                      <strong>Real-Time Collaboration:</strong> Built a robust workspace sharing system powered by Supabase, featuring live database syncing, secure user authentication, and granular role-based access controls (Owner, Editor, Viewer).
+                    </li>
+                    <li>
+                      <strong>Modern UI/UX:</strong> Designed a highly responsive, intuitive user interface equipped with seamless Light/Dark mode transitions, real-time in-app notifications, and streamlined board management.
+                    </li>
+                  </ul>
+                </div>
 
                 <div className="lg:w-1/3 space-y-6 bg-muted/30 p-6 rounded-xl border border-border/30">
                   <div>
                     <h4 className="font-semibold text-sm uppercase tracking-wider mb-3">Links</h4>
                     <div className="space-y-3">
-                      {/* Update these links with your actual Taskflow URLs */}
                       <a href="#" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
                         <SiGithub className="w-4 h-4" /> View Source Code
                       </a>
@@ -250,15 +270,14 @@ export default function ProjectsSection() {
               <div className="space-y-4">
                 <h3 className="text-xl font-bold">Gallery</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* Update these image paths to your Taskflow screenshots */}
-                  <div className="aspect-[1896/873] bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/kanban.png")}>
-                    <img src="/kanban.png" alt="Taskflow UI 1" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="aspect-[1896/873] relative bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/kanban.png")}>
+                    <Image src="/kanban.png" alt="Taskflow UI 1" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
-                  <div className="aspect-[1896/873] bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/workplaceSS.png")}>
-                    <img src="/workplaceSS.png" alt="Taskflow UI 2" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="aspect-[1896/873] relative bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/workplaceSS.png")}>
+                    <Image src="/workplaceSS.png" alt="Taskflow UI 2" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
-                  <div className="aspect-[1896/873] bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/logintask.png")}>
-                    <img src="/logintask.png" alt="Taskflow UI 2" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="aspect-[1896/873] relative bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/logintask.png")}>
+                    <Image src="/logintask.png" alt="Taskflow UI 3" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
                 </div>
               </div>
@@ -273,7 +292,16 @@ export default function ProjectsSection() {
           <button className="absolute top-4 right-4 sm:top-6 sm:right-6 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md transition-colors z-[201]" onClick={(e) => { e.stopPropagation(); setSelectedImage(null); }}>
             <X className="w-6 h-6" />
           </button>
-          <img src={selectedImage} alt="Fullscreen view" className="w-full h-full object-contain rounded-lg shadow-2xl animate-in zoom-in-95 duration-300" />
+          {/* Added a relative container wrapper for the lightbox image to properly utilize fill */}
+          <div className="relative w-full h-full flex items-center justify-center pointer-events-none">
+            <Image 
+              src={selectedImage} 
+              alt="Fullscreen view" 
+              fill
+              sizes="100vw"
+              className="object-contain rounded-lg shadow-2xl animate-in zoom-in-95 duration-300 pointer-events-auto" 
+            />
+          </div>
         </div>
       )}
     </>
