@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { SiPhp, SiMysql, SiGithub, SiReact, SiNextdotjs, SiTypescript, SiSupabase } from "react-icons/si";
-import { X, ExternalLink, ArrowRight, ArrowRightLeft, Bot, TrendingUp, Sparkles } from "lucide-react";
+import { X, ExternalLink, ArrowRightLeft, Bot, TrendingUp, Sparkles, Search, Code, ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function ProjectsSection() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -15,119 +15,202 @@ export default function ProjectsSection() {
 
   return (
     <>
-      <section className="space-y-6" id="projects">
-        <div className="flex justify-between items-end">
-          <h2 className="text-2xl font-semibold tracking-tight">Projects</h2>
-          <span className="text-sm font-medium text-muted-foreground">Page 1 of 1</span>
+      {/* We use a wrapper with a dark theme base class if your app doesn't enforce one globally. 
+        Adjust 'bg-[#15171E]' to match your exact background if needed.
+      */}
+      <section className="space-y-8 py-10 text-slate-200" id="projects">
+        
+        {/* Header section matching screenshot */}
+        <div className="space-y-6">
+          <h2 className="text-xl font-serif tracking-[0.3em] font-bold uppercase text-slate-100">
+            Projects
+          </h2>
+          
+          {/* Search Bar */}
+          <div className="relative">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+            <input 
+              type="text" 
+              placeholder="Search projects by name or tech..." 
+              className="w-full bg-[#1C2029] border border-slate-800 rounded-md pl-12 pr-4 py-3.5 text-sm text-slate-200 placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-700 transition-shadow"
+            />
+          </div>
         </div>
         
-        {/* Changed to lg:grid-cols-3 so all 3 fit nicely on large screens, or naturally wrap */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* 2-Column Grid Format */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           
           {/* Card 1: Freshflow */}
           <div 
-            onClick={() => setIsProjectModalOpen(true)}
-            className="group cursor-pointer rounded-xl border border-border/50 bg-card text-card-foreground shadow-sm overflow-hidden hover:border-primary/50 hover:shadow-lg transition-all duration-300 flex flex-col h-full"
+            className="group rounded-xl border border-slate-800 bg-[#1C2029] overflow-hidden flex flex-col h-full"
           >
-            <div className="w-full h-40 bg-muted relative overflow-hidden border-b border-border/50 shrink-0">
+            <div className="w-full h-52 relative overflow-hidden bg-slate-900 border-b border-slate-800 shrink-0">
               <Image 
                 src="/ADmin Login Screenshot.png" 
                 alt="Freshflow Preview"
                 fill
-                sizes="(max-width: 768px) 100vw, 33vw"
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover opacity-80"
               />
-              <div className="absolute inset-0 bg-background/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="bg-background text-foreground px-3 py-1.5 rounded-full text-xs font-bold shadow-xl flex items-center gap-1.5">
-                  View Details <ArrowRight className="w-3 h-3" />
-                </span>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1C2029] via-transparent to-transparent opacity-90" />
+              
+              {/* Title Overlay */}
+              <div className="absolute bottom-4 left-5 flex items-center gap-3">
+                <div className="bg-[#15171E] p-2 rounded border border-slate-800 flex items-center justify-center">
+                  <Code className="w-5 h-5 text-slate-300" />
+                </div>
+                <h3 className="text-xl font-serif font-bold text-slate-100 tracking-wide">Freshflow</h3>
               </div>
             </div>
 
-            <div className="p-5 flex flex-col flex-1">
-              <div className="mb-3">
-                <h3 className="text-lg font-bold group-hover:text-primary transition-colors line-clamp-1">Freshflow</h3>
-                <p className="text-xs text-primary font-medium mt-1 line-clamp-1">ML Sales Forecasting & Inventory</p>
-              </div>
-              <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed mb-4 flex-1">
-                A secure full-stack platform utilizing PHP, MySQL, and an ML forecasting engine applying Linear Regression to analyze data.
+            <div className="p-6 flex flex-col flex-1">
+              <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-5">
+                PHP · MYSQL · AJAX · MACHINE LEARNING
               </p>
-              <button className="text-xs font-bold text-primary flex items-center gap-1 group-hover:gap-2 transition-all mt-auto pt-2 border-t border-border/30">
-                View Full Project
+              
+              <ul className="space-y-3 mb-8 flex-1">
+                <li className="flex items-start gap-3 text-sm text-slate-300">
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-500 shrink-0 mt-1.5"></span>
+                  ML forecasting engine applying Linear Regression
+                </li>
+                <li className="flex items-start gap-3 text-sm text-slate-300">
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-500 shrink-0 mt-1.5"></span>
+                  Smart Pricing algorithm for expiration dates
+                </li>
+                <li className="flex items-start gap-3 text-sm text-slate-300">
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-500 shrink-0 mt-1.5"></span>
+                  AI data assistant using Llama 3 LLM
+                </li>
+              </ul>
+              
+              <button 
+                onClick={() => setIsProjectModalOpen(true)}
+                className="text-sm text-slate-400 hover:text-slate-200 transition-colors mt-auto text-left flex items-center gap-1.5"
+              >
+                View details &rarr;
               </button>
             </div>
           </div>
 
           {/* Card 2: Taskflow AI */}
           <div 
-            onClick={() => setIsTaskflowModalOpen(true)} 
-            className="group cursor-pointer rounded-xl border border-border/50 bg-card text-card-foreground shadow-sm overflow-hidden hover:border-primary/50 hover:shadow-lg transition-all duration-300 flex flex-col h-full"
+            className="group rounded-xl border border-slate-800 bg-[#1C2029] overflow-hidden flex flex-col h-full"
           >
-            <div className="w-full h-40 bg-muted relative overflow-hidden border-b border-border/50 shrink-0">
+            <div className="w-full h-52 relative overflow-hidden bg-slate-900 border-b border-slate-800 shrink-0">
               <Image 
                 src="/logintask.png" 
                 alt="Taskflow AI Preview" 
                 fill
-                sizes="(max-width: 768px) 100vw, 33vw"
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover opacity-80"
               />
-              <div className="absolute inset-0 bg-background/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="bg-background text-foreground px-3 py-1.5 rounded-full text-xs font-bold shadow-xl flex items-center gap-1.5">
-                  View Details <ArrowRight className="w-3 h-3" />
-                </span>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1C2029] via-transparent to-transparent opacity-90" />
+              
+              {/* Title Overlay */}
+              <div className="absolute bottom-4 left-5 flex items-center gap-3">
+                <div className="bg-[#15171E] p-2 rounded border border-slate-800 flex items-center justify-center">
+                  <Code className="w-5 h-5 text-slate-300" />
+                </div>
+                <h3 className="text-xl font-serif font-bold text-slate-100 tracking-wide">Taskflow AI</h3>
               </div>
             </div>
 
-            <div className="p-5 flex flex-col flex-1">
-              <div className="mb-3">
-                <h3 className="text-lg font-bold group-hover:text-primary transition-colors line-clamp-1">Taskflow AI</h3>
-                <p className="text-xs text-primary font-medium mt-1 line-clamp-1">AI-Powered Task Management</p>
-              </div>
-              <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed mb-4 flex-1">
-                An intelligent task management application built with Next.js and Supabase, leveraging the Gemini API to streamline workflows.
+            <div className="p-6 flex flex-col flex-1">
+              <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-5">
+                NEXT.JS · REACT · TYPESCRIPT · SUPABASE
               </p>
-              <button className="text-xs font-bold text-primary flex items-center gap-1 group-hover:gap-2 transition-all mt-auto pt-2 border-t border-border/30">
-                View Full Project
+              
+              <ul className="space-y-3 mb-8 flex-1">
+                <li className="flex items-start gap-3 text-sm text-slate-300">
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-500 shrink-0 mt-1.5"></span>
+                  Intelligent task management application
+                </li>
+                <li className="flex items-start gap-3 text-sm text-slate-300">
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-500 shrink-0 mt-1.5"></span>
+                  Built-in productivity engine via Gemini API
+                </li>
+                <li className="flex items-start gap-3 text-sm text-slate-300">
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-500 shrink-0 mt-1.5"></span>
+                  Real-time collaboration workspace sharing
+                </li>
+              </ul>
+              
+              <button 
+                onClick={() => setIsTaskflowModalOpen(true)}
+                className="text-sm text-slate-400 hover:text-slate-200 transition-colors mt-auto text-left flex items-center gap-1.5"
+              >
+                View details &rarr;
               </button>
             </div>
           </div>
 
           {/* Card 3: OtakuRecs */}
           <div 
-            onClick={() => setIsOtakuRecsModalOpen(true)} 
-            className="group cursor-pointer rounded-xl border border-border/50 bg-card text-card-foreground shadow-sm overflow-hidden hover:border-primary/50 hover:shadow-lg transition-all duration-300 flex flex-col h-full"
+            className="group rounded-xl border border-slate-800 bg-[#1C2029] overflow-hidden flex flex-col h-full"
           >
-            <div className="w-full h-40 bg-muted relative overflow-hidden border-b border-border/50 shrink-0">
+            <div className="w-full h-52 relative overflow-hidden bg-slate-900 border-b border-slate-800 shrink-0">
               <Image 
-                src="/otakurecs-preview.png" // UPDATE THIS PATH
+                src="/otakurecs-preview.png"
                 alt="OtakuRecs Preview" 
                 fill
-                sizes="(max-width: 768px) 100vw, 33vw"
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover opacity-80"
               />
-              <div className="absolute inset-0 bg-background/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="bg-background text-foreground px-3 py-1.5 rounded-full text-xs font-bold shadow-xl flex items-center gap-1.5">
-                  View Details <ArrowRight className="w-3 h-3" />
-                </span>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1C2029] via-transparent to-transparent opacity-90" />
+              
+              {/* Title Overlay */}
+              <div className="absolute bottom-4 left-5 flex items-center gap-3">
+                <div className="bg-[#15171E] p-2 rounded border border-slate-800 flex items-center justify-center">
+                  <Code className="w-5 h-5 text-slate-300" />
+                </div>
+                <h3 className="text-xl font-serif font-bold text-slate-100 tracking-wide">OtakuRecs</h3>
               </div>
             </div>
 
-            <div className="p-5 flex flex-col flex-1">
-              <div className="mb-3">
-                <h3 className="text-lg font-bold group-hover:text-primary transition-colors line-clamp-1">OtakuRecs</h3>
-                <p className="text-xs text-primary font-medium mt-1 line-clamp-1">Anime Recommendation Platform</p> {/* UPDATE DESCRIPTION */}
-              </div>
-              <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed mb-4 flex-1">
-                A specialized platform for discovering and tracking anime, featuring personalized recommendations and intuitive UI. {/* UPDATE DESCRIPTION */}
+            <div className="p-6 flex flex-col flex-1">
+              <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-5">
+                REACT · NEXT.JS · API INTEGRATION
               </p>
-              <button className="text-xs font-bold text-primary flex items-center gap-1 group-hover:gap-2 transition-all mt-auto pt-2 border-t border-border/30">
-                View Full Project
+              
+              <ul className="space-y-3 mb-8 flex-1">
+                <li className="flex items-start gap-3 text-sm text-slate-300">
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-500 shrink-0 mt-1.5"></span>
+                  Specialized anime discovery platform
+                </li>
+                <li className="flex items-start gap-3 text-sm text-slate-300">
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-500 shrink-0 mt-1.5"></span>
+                  Personalized recommendation algorithms
+                </li>
+                <li className="flex items-start gap-3 text-sm text-slate-300">
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-500 shrink-0 mt-1.5"></span>
+                  Intuitive and responsive mobile-first UI
+                </li>
+              </ul>
+              
+              <button 
+                onClick={() => setIsOtakuRecsModalOpen(true)}
+                className="text-sm text-slate-400 hover:text-slate-200 transition-colors mt-auto text-left flex items-center gap-1.5"
+              >
+                View details &rarr;
               </button>
             </div>
           </div>
 
         </div>
+
+        {/* Pagination aligned with the screenshot */}
+        <div className="flex items-center justify-center gap-4 pt-8 pb-4">
+          <button className="flex items-center gap-2 px-4 py-2 text-sm bg-transparent border border-slate-800 text-slate-400 rounded-md hover:bg-slate-800 hover:text-slate-200 transition-colors">
+            <ChevronLeft className="w-4 h-4" /> Prev
+          </button>
+          <span className="text-sm text-slate-500 font-medium">Page 1 of 2</span>
+          <button className="flex items-center gap-2 px-4 py-2 text-sm bg-transparent border border-slate-800 text-slate-400 rounded-md hover:bg-slate-800 hover:text-slate-200 transition-colors">
+            Next <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
       </section>
+
+      {/* --- Keep ALL Your Original Modal Logic Below This Line --- */}
 
       {/* Freshflow Modal */}
       {isProjectModalOpen && (
@@ -326,12 +409,10 @@ export default function ProjectsSection() {
             </div>
 
             <div className="p-6 sm:p-8 space-y-10">
-              {/* OtakuRecs Main Image/Video */}
               <div className="w-full max-w-3xl mx-auto aspect-[4/3] bg-muted rounded-xl border border-border/50 overflow-hidden relative shadow-lg">
-                {/* Switch to Image or Video depending on what you have for OtakuRecs */}
                 <video 
-                  src="/otakuvid.mp4" // UPDATE THIS
-                  poster="/otakurecs-preview.png" // UPDATE THIS
+                  src="/otakuvid.mp4" 
+                  poster="/otakurecs-preview.png" 
                   controls 
                   autoPlay 
                   muted 
@@ -368,7 +449,6 @@ export default function ProjectsSection() {
                   <div>
                     <h4 className="font-semibold text-sm uppercase tracking-wider mb-3">Tech Stack</h4>
                     <div className="flex flex-wrap gap-2">
-                      {/* UPDATE THESE TO MATCH OTAKURECS TECH STACK */}
                       {[
                         { name: "Next.js", icon: SiNextdotjs, color: "text-foreground dark:text-white" },
                         { name: "React", icon: SiReact, color: "text-[#61DAFB]" },
@@ -386,7 +466,6 @@ export default function ProjectsSection() {
               <div className="space-y-4">
                 <h3 className="text-xl font-bold">Gallery</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* UPDATE THESE IMAGES */}
                   <div className="aspect-[1896/873] relative bg-muted rounded-lg border border-border/50 overflow-hidden cursor-zoom-in group" onClick={() => setSelectedImage("/otaku1.png")}>
                     <Image src="/otaku1.png" alt="OtakuRecs UI 1" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
