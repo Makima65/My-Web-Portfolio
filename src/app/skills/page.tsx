@@ -1,15 +1,15 @@
 import Link from "next/link";
 import {
   SiReact, SiNextdotjs, SiJavascript, SiTailwindcss, SiHtml5, SiCss,
-  SiPhp, SiNodedotjs, SiPython, 
-  SiMysql, SiPostgresql, SiSqlite,
-  SiGit, SiGithub, SiVercel, SiHostinger,
+  SiPhp, SiNodedotjs, SiPython, SiTypescript, SiFastapi, SiHuggingface,
+  SiMysql, SiPostgresql, SiSqlite, SiSupabase,
+  SiGit, SiGithub, SiVercel, SiHostinger, SiDocker,
   SiFigma, SiCanva, SiGooglesheets 
-} from "react-icons/si"; // Goodbye, Simple Icons VS Code!
+} from "react-icons/si"; 
 import { FaJava, FaFileExcel, FaFileWord, FaFilePowerpoint } from "react-icons/fa"; 
-import { TbBrandCSharp, TbBrandCpp, TbBrandVisualStudio, TbBrandVscode } from "react-icons/tb"; // <-- NEW: Added TbBrandVscode
+import { TbBrandCSharp, TbBrandCpp, TbBrandVisualStudio, TbBrandVscode } from "react-icons/tb"; 
 import { 
-  BrainCircuit, Network, ShieldAlert, KeyRound, Lock, BookOpen, Braces, Code, Video, Terminal
+  BrainCircuit, Network, ShieldAlert, KeyRound, Lock, BookOpen, Braces, Code, Video, Terminal, Database
 } from "lucide-react";
 
 export default function SkillsPage() {
@@ -19,6 +19,7 @@ export default function SkillsPage() {
       skills: [
         { name: "React", icon: SiReact, color: "text-[#61DAFB]" },
         { name: "Next.js", icon: SiNextdotjs, color: "text-foreground dark:text-white" },
+        { name: "TypeScript", icon: SiTypescript, color: "text-[#3178C6]" },
         { name: "JavaScript (ES6+)", icon: SiJavascript, color: "text-[#F7DF1E]" },
         { name: "Tailwind CSS", icon: SiTailwindcss, color: "text-[#06B6D4]" },
         { name: "HTML5", icon: SiHtml5, color: "text-[#E34F26]" },
@@ -29,20 +30,24 @@ export default function SkillsPage() {
     {
       title: "Backend & Core",
       skills: [
+        { name: "Python", icon: SiPython, color: "text-[#3776AB]" },
+        { name: "FastAPI", icon: SiFastapi, color: "text-[#009688]" },
         { name: "PHP", icon: SiPhp, color: "text-[#777BB4]" },
+        { name: "Node.js", icon: SiNodedotjs, color: "text-[#339933]" },
+        { name: "Java", icon: FaJava, color: "text-[#ED8B00]" },
         { name: "C#", icon: TbBrandCSharp, color: "text-[#512BD4]" },
         { name: "C++", icon: TbBrandCpp, color: "text-[#00599C]" },
-        { name: "Java", icon: FaJava, color: "text-[#ED8B00]" },
-        { name: "Node.js", icon: SiNodedotjs, color: "text-[#339933]" },
-        { name: "Python", icon: SiPython, color: "text-[#3776AB]" },
-        { name: "Machine Learning", icon: BrainCircuit, color: "text-emerald-500" }
+        { name: "Machine Learning", icon: BrainCircuit, color: "text-emerald-500" },
+        { name: "Hugging Face", icon: SiHuggingface, color: "text-[#FFD21E]" }
       ]
     },
     {
       title: "Databases & Security",
       skills: [
-        { name: "MySQL", icon: SiMysql, color: "text-[#4479A1]" },
         { name: "PostgreSQL", icon: SiPostgresql, color: "text-[#4169E1]" },
+        { name: "MySQL", icon: SiMysql, color: "text-[#4479A1]" },
+        { name: "Supabase", icon: SiSupabase, color: "text-[#3ECF8E]" },
+        { name: "Pinecone", icon: Database, color: "text-foreground dark:text-white" },
         { name: "SQLite", icon: SiSqlite, color: "text-[#003B57] dark:text-[#0075B3]" },
         { name: "OWASP Standards", icon: ShieldAlert, color: "text-red-500" },
         { name: "2FA Integration", icon: KeyRound, color: "text-amber-500" },
@@ -52,7 +57,7 @@ export default function SkillsPage() {
     {
       title: "Dev Environments",
       skills: [
-        { name: "VS Code", icon: TbBrandVscode, color: "text-[#007ACC]" }, // Swapped to Tabler!
+        { name: "VS Code", icon: TbBrandVscode, color: "text-[#007ACC]" }, 
         { name: "Visual Studio 2022", icon: TbBrandVisualStudio, color: "text-[#5C2D91] dark:text-[#C586C0]" }, 
         { name: "NetBeans", icon: Code, color: "text-[#1B6AC6]" },
         { name: "Linux CLI", icon: Terminal, color: "text-[#4EAA25]" }
@@ -61,6 +66,7 @@ export default function SkillsPage() {
     {
       title: "Cloud & DevOps",
       skills: [
+        { name: "Docker", icon: SiDocker, color: "text-[#2496ED]" },
         { name: "Git", icon: SiGit, color: "text-[#F05032]" },
         { name: "GitHub", icon: SiGithub, color: "text-foreground dark:text-white" },
         { name: "Hostinger", icon: SiHostinger, color: "text-[#673DE6]" },
